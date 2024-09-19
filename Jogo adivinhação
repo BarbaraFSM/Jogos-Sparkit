@@ -1,0 +1,27 @@
+// Número secreto e contador de tentativas
+let numeroSecreto = Math.floor(Math.random() * 100) + 1;
+let tentativas = 0;
+
+// Função para processar o palpite do jogador
+function makeGuess() {
+    let guessInput = document.getElementById("guess-input");
+    let guess = parseInt(guessInput.value);
+    tentativas++;
+
+    let feedback = document.getElementById("feedback");
+    let attempts = document.getElementById("attempts");
+
+    if (isNaN(guess)) {
+        feedback.innerHTML = "Por favor, insira um número válido!";
+    } else if (guess < numeroSecreto) {
+        feedback.innerHTML = "Muito baixo! Tente novamente.";
+    } else if (guess > numeroSecreto) {
+        feedback.innerHTML = "Muito alto! Tente novamente.";
+    } else {
+        feedback.innerHTML = "Parabéns! Você adivinhou o número " + numeroSecreto + "!";
+        feedback.style.color = "green";
+    }
+
+    attempts.innerHTML = "Tentativas: " + tentativas;
+    guessInput.value = "";  // Limpa o campo de entrada
+}
